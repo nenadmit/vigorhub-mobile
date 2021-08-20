@@ -11,11 +11,13 @@ export default LoginScreen = () => {
     username: "",
     password: "",
   });
-  
+  const [validationErr, setValidationErr] = React.useState(null);
+
   const dispath = useDispatch();
-  const {error,isAuthenticated} = useSelector(state => state.auth)
-  
+  const { error, isAuthenticated } = useSelector((state) => state.auth);
+
   const handleInputChange = (name, text) => {
+    setValidationErr(null);
     let login = loginData;
     login[name] = text;
     setLoginData({ ...loginData });
@@ -23,7 +25,26 @@ export default LoginScreen = () => {
 
   const handleAuthenticate = () => {
     const { username, password } = loginData;
-    dispath(authenticate({ username, password }));
+    const validationErr = validateInput(username, password);
+    if (validationErr) {
+      setValidationErr(validationErr);
+      return;
+    }
+    console.log('dispatching')
+    dispath(authenticate(username, password));
+  };
+
+  const validateInput = (username, password) => {
+    let errorMessageKey = null;
+    var emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    if (username.length === 0) {
+      errorMessageKey = "email_cannot_be_blank";
+    } else if (!username.match(emailPattern)) {
+      errorMessageKey = "email_must_be_valid";
+    } else if (password.length < 8) {
+      errorMessageKey = "password_must_be_greather_than_8";
+    }
+    return errorMessageKey;
   };
 
   return (
@@ -52,6 +73,9 @@ export default LoginScreen = () => {
             name="password"
             value={loginData.password}
           ></Input>
+          {validationErr && (
+            <Text style={styles.errorMessage}>{translate(validationErr)}</Text>
+          )}
           <Button onClick={handleAuthenticate} style={styles.button}>
             {translate("login")}
           </Button>
@@ -65,18 +89,20 @@ export default LoginScreen = () => {
             <Text appearance="hint">{translate("forgot_password")}</Text>
             <Text appearance="hint">{translate("register_here")}</Text>
           </Layout>
-        {error && <Layout style={styles.errorContainer}>
-            <Text style={styles.errorMessage}>
-              {translate("bad_credentials")}
-            </Text>
-            <Layout style={styles.closeIcon}>
-              <Icon
-                style={{ width: 20, height: 20 }}
-                fill="#E0484C"
-                name="close-outline"
-              />
+          {error && (
+            <Layout style={styles.errorContainer}>
+              <Text style={styles.errorMessage}>
+                {translate("bad_credentials")}
+              </Text>
+              <Layout style={styles.closeIcon}>
+                <Icon
+                  style={{ width: 20, height: 20 }}
+                  fill="#E0484C"
+                  name="close-outline"
+                />
+              </Layout>
             </Layout>
-          </Layout>}
+          )}
         </Layout>
       </Layout>
     </Layout>
@@ -129,6 +155,8 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     color: "#E0484C",
+    fontSize: 12,
+    marginTop: 10,
   },
   closeIcon: {
     width: 15,

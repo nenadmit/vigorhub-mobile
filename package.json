@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@eva-design/eva": "^2.1.1",
+    "@react-native-community/async-storage": "^1.12.1",
     "@ui-kitten/components": "^5.1.1",
     "@ui-kitten/eva-icons": "^5.1.1",
     "axios": "^0.21.1",
@@ -26,6 +27,7 @@
     "react-native-svg": "^12.1.1",
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.4",
+    "react-router-native": "^5.2.0",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0"
   },
