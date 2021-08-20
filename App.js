@@ -1,13 +1,22 @@
+import { ApplicationProvider, Input,Button, Modal, IconRegistry } from '@ui-kitten/components';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+import * as eva from '@eva-design/eva';
+import LoginScreen from './containers/LoginScreen';
+import { Provider } from 'react-redux';
+import VigorhubStore from './store/store'
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+    <IconRegistry icons={EvaIconsPack} ></IconRegistry>
+    <ApplicationProvider theme={eva.light} {...eva}>
+      <Provider store={VigorhubStore}>
+       <LoginScreen></LoginScreen>
+      </Provider>
+    </ApplicationProvider>
+   </> 
   );
 }
 
