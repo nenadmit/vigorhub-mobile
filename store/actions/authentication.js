@@ -50,6 +50,7 @@ export function verifyAuthentication(){
 }
 
 export function logout(){
+    console.log("loging out")
     return async dispatch => {
 
         try{

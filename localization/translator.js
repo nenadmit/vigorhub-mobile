@@ -1,7 +1,7 @@
 import i18n from 'i18n-js';
 import { en,srb } from './languages';
 
-i18n.locale = 'srb'
+i18n.locale = 'en'
 
 export function translate(key) {
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Icon, Layout, Text } from "@ui-kitten/components";
+import { Icon, Layout, Text } from "@ui-kitten/components";
 import { StyleSheet, Image, ImageBackground } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Input, Button } from "../components/common/Controls";
@@ -11,9 +11,9 @@ export default LoginScreen = () => {
     username: "",
     password: "",
   });
-  const [validationErr, setValidationErr] = React.useState(null);
-
+  
   const dispath = useDispatch();
+  const [validationErr, setValidationErr] = React.useState(null);
   const { error, isAuthenticated } = useSelector((state) => state.auth);
 
   const handleInputChange = (name, text) => {
