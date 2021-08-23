@@ -26,6 +26,7 @@ const routes = [
 function Home(){
 
     const { authenticationCompleted,isAuthenticated } = useSelector((state) => state.auth);
+    console.log("from home")
     if (authenticationCompleted && isAuthenticated){
         return <Redirect to="/dashboard"></Redirect>
     }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Input, Button } from "../components/common/Controls";
 import { authenticate } from "../store/actions/authentication";
 import { translate } from "../localization/translator";
+import { Redirect } from "react-router-native";
 
 export default LoginScreen = () => {
   const [loginData, setLoginData] = React.useState({
@@ -30,7 +31,6 @@ export default LoginScreen = () => {
       setValidationErr(validationErr);
       return;
     }
-    console.log('dispatching')
     dispath(authenticate(username, password));
   };
 
@@ -46,6 +46,10 @@ export default LoginScreen = () => {
     }
     return errorMessageKey;
   };
+
+  if(isAuthenticated){
+    return <Redirect to="/dashboard"></Redirect>
+  }
 
   return (
     <Layout>

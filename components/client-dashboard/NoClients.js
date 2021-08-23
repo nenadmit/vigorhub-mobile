@@ -1,29 +1,47 @@
 import { Layout } from "@ui-kitten/components";
 import React from "react";
-import { Text,Image } from "react-native";
+import { Text, Image } from "react-native";
 import { Button } from "../common/Controls";
-import {translate} from '../../localization/translator'
-import { Link } from "react-router-native";
+import { translate } from "../../localization/translator";
+import {StyleSheet} from 'react-native'
 
 function NoClients(props) {
   return (
-    <Layout
-      style={{ alignItems: "center" }}
-    >
+    <Layout style={{ alignItems: "center" }}>
       <Image
         source={require("../../assets/illustration/dumbell-guy.jpg")}
-        style={{ width: 340, height: 200, resizeMode: "contain" }}
+        style={styles.mainImage}
       ></Image>
-      <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-        {translate("you_have_no_clients")}
+      <Text style={styles.title}>{translate("you_have_no_clients")}</Text>
+      <Text style={styles.subtext}>
+        {translate("why_dont_you_invite_clients")}
       </Text>
-      <Text>{translate("why_dont_you_invite_clients")}</Text>
-      <Button onPress={() => open(true)} style={{ width: 150 }}>
-        {translate("send_invitation")}
-      </Button>
-      <Link to="/dashboard/clients"><Text>Clients</Text></Link>
+      <Button style={styles.btn}>{translate("send_invitation")}</Button>
     </Layout>
   );
 }
 
 export default NoClients;
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+  },
+  mainImage: {
+    width: 340,
+    height: 200,
+    resizeMode: "contain",
+  },
+  title: {
+    marginTop: 5,
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  subtext: {
+    marginTop: 5,
+  },
+  btn: {
+    width: 150,
+    marginTop: 10,
+  },
+});

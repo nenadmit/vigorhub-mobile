@@ -1,4 +1,4 @@
-import { Layout, Text } from "@ui-kitten/components";
+import { Layout} from "@ui-kitten/components";
 import React from "react";
 import DashboardContainer from "../components/client-dashboard/DashboardContainer";
 import BottomNavigation from "../components/common/BottomNavigation";
@@ -6,7 +6,7 @@ import {
   NativeRouter,
   Route,
 } from "react-router-native";
-import DashboardClients from "./DashboardClients";
+import DashboardClients from "./dashboard-clients";
 import DashboardWorkouts from "./DashboardWorkouts";
 import { View } from "react-native";
 

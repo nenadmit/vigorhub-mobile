@@ -16,10 +16,9 @@ const PersonIcon = (props) => (
     <Icon {...props} name='email-outline'/>
   );
   
-  const useBottomNavigationState = (initialState = 0,history) => {
+  const useBottomNavigationState = (initialState,history) => {
     const [selectedIndex, setSelectedIndex] = React.useState(initialState);
     const select = (index) => {
-      console.log(index);
       setSelectedIndex(index)
       if(selectedIndex === 0){
           history.push("/dashboard/clients")
@@ -34,7 +33,7 @@ const PersonIcon = (props) => (
 function BottomNavigation(props) {
     
     const history = useHistory()
-    const bottomState = useBottomNavigationState(0,history);
+    const bottomState = useBottomNavigationState(null,history);
     const go = (url) => {
         console.log("pushnig to ",url)
         history.push(url)

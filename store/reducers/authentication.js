@@ -6,7 +6,6 @@ const initialState = {
     error:null,
     isAuthenticated:false,
     authenticationCompleted:false,
-    lang: 'en'
 }
 
 export default function reducer(state = initialState, action) {
