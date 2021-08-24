@@ -1,13 +1,13 @@
 import { Layout} from "@ui-kitten/components";
 import React from "react";
-import DashboardContainer from "../components/client-dashboard/DashboardContainer";
-import BottomNavigation from "../components/common/BottomNavigation";
+import DashboardContainer from "../../components/instructor-dashboard/dashboard-container";
+import BottomNavigation from "../../components/common/botton-navigation";
 import {
   NativeRouter,
   Route,
 } from "react-router-native";
 import DashboardClients from "./dashboard-clients";
-import DashboardWorkouts from "./DashboardWorkouts";
+import DashboardWorkouts from "./dashboard-plans";
 import { View } from "react-native";
 
 const routes = [

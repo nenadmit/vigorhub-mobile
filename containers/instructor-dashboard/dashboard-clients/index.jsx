@@ -3,9 +3,10 @@ import React from "react";
 import { useEffect } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import NoClients from "../../components/client-dashboard/NoClients";
-import { Button, Input } from "../../components/common/Controls";
-import * as action from '../../store/actions/clients'
+import InviteUserModal from "../../../components/instructor-dashboard/invite-user-modal";
+import NoClients from "../../../components/instructor-dashboard/no-clients-screen";
+import { Button } from "../../../components/common/controls";
+import * as actions from "../../../store/actions/clients";
 
 function ClientCard(props) {
   const { first_name, last_name, profileImg, createdAt } = props;
@@ -16,7 +17,7 @@ function ClientCard(props) {
           <Avatar source={{ uri: profileImg }}></Avatar>
         ) : (
           <Avatar
-            source={require("../../assets/clients/default-profile-image.jpg")}
+            source={require("../../../assets/clients/default-profile-image.jpg")}
           ></Avatar>
         )}
         <Text
@@ -29,18 +30,14 @@ function ClientCard(props) {
 }
 
 function DashboardClients(props) {
- 
-  const {clients,error} = useSelector(state => state.clients);
-  const {currentUser} = useSelector(state => state.auth)
-  const dispatch = useDispatch()
-  const [cclients, setClients] = React.useState(clients);
+  const { clients, error } = useSelector((state) => state.clients);
+  const { currentUser } = useSelector((state) => state.auth);
+  const [inviteModalOpen, setInviteModal] = React.useState(false);
+  const dispatch = useDispatch();
 
-  useEffect(()=> {
-    dispatch(actions.fetchUsers(currentUser.sub))
-  },[clients])
-  
-
-
+  useEffect(() => {
+    dispatch(actions.fetchClients(currentUser.id));
+  }, []);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -53,10 +50,19 @@ function DashboardClients(props) {
           marginBottom: 10,
         }}
       ></View>
-      {cclients.length === 0 && <NoClients></NoClients>}
-      {cclients.map((client, index) => (
+      {clients.length === 0 && (
+        <>
+          <NoClients></NoClients>
+          <Button onClick={() => setInviteModal(true)}>Invite client</Button>
+        </>
+      )}
+      {clients.map((client, index) => (
         <ClientCard {...client} key={index}></ClientCard>
       ))}
+      <InviteUserModal
+        isVisible={inviteModalOpen}
+        onClose={() => setInviteModal(false)}
+      ></InviteUserModal>
     </ScrollView>
   );
 }

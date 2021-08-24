@@ -4,7 +4,7 @@ import * as eva from '@eva-design/eva';
 import { Provider} from 'react-redux';
 import VigorhubStore from './store/store'
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
-import VigorhubApp from './containers/VigorhubApp';
+import VigorhubApp from './containers/vigorhub';
 export default function App() {
 
   return (

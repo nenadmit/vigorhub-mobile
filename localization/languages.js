@@ -11,7 +11,11 @@ export const en = {
     password_must_be_greather_than_8: "Password must be greather than 8 characters.",
     you_have_no_clients:"You have no clients.",
     why_dont_you_invite_clients:"Why don't you invite some?",
-    send_invitation: "Send invitation"
+    send_invitation: "Send invitation",
+    plans: "Plans",
+    home: "Home",
+    clients: "Clients",
+    notifications: "Notifications"
 
 }
 
@@ -28,5 +32,9 @@ export const srb = {
     password_must_be_greather_than_8: "Lozinka mora biti duza od 8 karaktera.",
     you_have_no_clients:"Jos uvek nemas klijente.",
     why_dont_you_invite_clients: "Zasto ih be bih pozvao?",
-    send_invitation: "Posalji pozivnicu"
+    send_invitation: "Posalji pozivnicu",
+    plans: "Planovi",
+    home: "Pocetna",
+    clients: "Klijenti",
+    notifications: "Notifikacije"
 }

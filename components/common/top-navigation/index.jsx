@@ -3,7 +3,7 @@ import React from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-native";
-import { logout } from "../../store/actions/authentication";
+import { logout } from "../../../store/actions/authentication";
 function TopNavigation(props) {
 
   const history = useHistory()  
@@ -15,7 +15,7 @@ function TopNavigation(props) {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../assets/logo/logo-horizontal-white.png")}
+        source={require("../../../assets/logo/logo-horizontal-white.png")}
         style={styles.logo}
       ></Image>
       <View style={{ flexDirection: "row" }}>

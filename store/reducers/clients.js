@@ -4,7 +4,7 @@ const initialState = {
     isLoading:false,
     clients:[],
     error:null,
-    clientInvited:false,
+    invitedClient:null,
 }
 
 export default function Reducer(state = initialState,action){
@@ -26,18 +26,19 @@ export default function Reducer(state = initialState,action){
 }
 
 function createClientSuccess(state,action){
-    clients = [...state.clients,action.payload]
-    return {...state,clients,isLoading:false,error:null}
+    const invitedClient = action.payload
+    clients = [...state.clients,invitedClient]
+    return {...state,clients,isLoading:false,error:null,invitedClient}
 }
 
 function fetchClientsSuccess(state,action){
-    return {...state,clients:action.payload,isLoading:false,error:null,clientInvited:true}
+    return {...state,clients:action.payload,isLoading:false,error:null}
 }
 function fetchError(state,action){
     return {...state,error:action.payload}
 }
 function clearState(state){
-    return {...state,isLoading:false,error:null,clientInvited:false}
+    return {...state,isLoading:false,error:null,invitedClient:null}
 }
 
 function beginRequest(state){

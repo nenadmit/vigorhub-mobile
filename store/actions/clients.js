@@ -17,31 +17,54 @@ export function fetchClients(currentUserID) {
   };
 }
 
-export function inviteClient(currentUserID, invitedUser) {
-  return (dispatch) => {
+export function inviteClient(invitedUser) {
+  return async (dispatch,getState) => {
     try {
+      const state = getState();
+      const currentUserID = state.auth.currentUser.id
+
       const { email, firstName, lastName } = invitedUser;
       const payload = {
         first_name: firstName,
-        lastName: lastName,
+        last_name: lastName,
         email,
       };
 
       const url = `${API_URL}/api/v1/accounts/${currentUserID}/clients`;
       const { data } = await http.post(url, payload);
+      console.log(data,'CLIENT CREATED SUCCESSFULLY');
 
       dispatch({
         type: actionTypes.CREATE_CLIENT_SUCCESS,
         payload: data,
       });
     } catch (ex) {
+      console.log("ERROR CREATING USER")
       dispatch(dispatchErr(ex));
     }
   };
 }
+
+export function clearState(){
+  return dispatch => {
+    dispatch({
+      type:actionTypes.CLEAR_CLIENTS_STATE
+    })
+  }
+}
+
 function dispatchErr(error) {
+
+  let errorMsg = "";
+  if (error.response){
+    errorMsg = error.response.data.message
+  }else{
+    errorMsg = "unexpected_server_error"
+  }
+  console.log(error.response)
+
   return {
     type: actionTypes.FETCH_CLIENTS_ERROR,
-    payload: errorKey,
+    payload: errorMsg,
   };
 }

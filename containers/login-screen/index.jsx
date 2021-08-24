@@ -2,9 +2,9 @@ import React from "react";
 import { Icon, Layout, Text } from "@ui-kitten/components";
 import { StyleSheet, Image, ImageBackground } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { Input, Button } from "../components/common/Controls";
-import { authenticate } from "../store/actions/authentication";
-import { translate } from "../localization/translator";
+import { Input, Button } from "../../components/common/controls";
+import { authenticate } from "../../store/actions/authentication";
+import { translate } from "../../localization/translator";
 import { Redirect } from "react-router-native";
 
 export default LoginScreen = () => {
@@ -54,12 +54,12 @@ export default LoginScreen = () => {
   return (
     <Layout>
       <ImageBackground
-        source={require("../assets/bg-shapes/half-circle-black.png")}
+        source={require("../../assets/bg-shapes/half-circle-black.png")}
         style={styles.circleBackground}
       >
         <Image
           style={styles.logo}
-          source={require("../assets/logo/logo-vertical-white.png")}
+          source={require("../../assets/logo/logo-vertical-white.png")}
         ></Image>
         <Layout style={styles.yellowDivider}></Layout>
       </ImageBackground>

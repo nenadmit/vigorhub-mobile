@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageBackground,StyleSheet } from 'react-native';
-import TopNavigation from '../common/TopNavigation';
+import TopNavigation from '../common/top-navigation';
 
 function DashboardContainer(props) {
     return (

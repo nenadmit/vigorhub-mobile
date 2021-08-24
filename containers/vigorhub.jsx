@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NativeRouter, Redirect, Route } from "react-router-native";
 import { verifyAuthentication } from "../store/actions/authentication";
-import LoginScreen from "./LoginScreen";
-import InstructorDashboard from "./InstructorDashboard";
-import {Text} from 'react-native'
+import LoginScreen from "./login-screen";
+import InstructorDashboard from "./instructor-dashboard";
+import { Text } from "react-native";
 
 const routes = [
   {
@@ -14,28 +14,29 @@ const routes = [
   },
   {
     path: "/",
-    exact:true,
+    exact: true,
     component: Home,
   },
   {
     path: "/dashboard",
     component: InstructorDashboard,
-  }
+  },
 ];
 
-function Home(){
+function Home() {
+  const { authenticationCompleted, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
+  console.log("from home");
+  if (authenticationCompleted && isAuthenticated) {
+    return <Redirect to="/dashboard"></Redirect>;
+  }
 
-    const { authenticationCompleted,isAuthenticated } = useSelector((state) => state.auth);
-    console.log("from home")
-    if (authenticationCompleted && isAuthenticated){
-        return <Redirect to="/dashboard"></Redirect>
-    }
+  if (authenticationCompleted && !isAuthenticated) {
+    return <Redirect to="/login"></Redirect>;
+  }
 
-    if (authenticationCompleted && !isAuthenticated){
-        return <Redirect to="/login"></Redirect>
-    }
-
-    return <Text>Loading...</Text>
+  return <Text>Loading...</Text>;
 }
 
 function VigorhubApp(props) {
@@ -45,7 +46,9 @@ function VigorhubApp(props) {
     dispatch(verifyAuthentication());
   }, []);
 
-  const { isLoading,authenticationCompleted } = useSelector((state) => state.auth);
+  const { isLoading, authenticationCompleted } = useSelector(
+    (state) => state.auth
+  );
 
   if (isLoading || !authenticationCompleted) {
     return <Text>Loading...</Text>;

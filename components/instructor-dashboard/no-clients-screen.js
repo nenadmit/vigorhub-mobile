@@ -1,11 +1,10 @@
 import { Layout } from "@ui-kitten/components";
 import React from "react";
 import { Text, Image } from "react-native";
-import { Button } from "../common/Controls";
 import { translate } from "../../localization/translator";
 import {StyleSheet} from 'react-native'
 
-function NoClients(props) {
+function NoClients() {
   return (
     <Layout style={{ alignItems: "center" }}>
       <Image
@@ -16,7 +15,6 @@ function NoClients(props) {
       <Text style={styles.subtext}>
         {translate("why_dont_you_invite_clients")}
       </Text>
-      <Button style={styles.btn}>{translate("send_invitation")}</Button>
     </Layout>
   );
 }
