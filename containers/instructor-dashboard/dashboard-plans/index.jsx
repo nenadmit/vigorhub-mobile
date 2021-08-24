@@ -5,9 +5,8 @@ import { Button } from '../../../components/common/controls';
 
 function DashboardWorkouts(props) {
     return (
-        <View style={{width:"100%",height:"100%",backgroundColor:"red"}}>
-            <Button>Hello</Button>
-            <Link to="/login"><Text>Click here</Text></Link>
+        <View>
+            <Text>Workout plans here</Text>
         </View>
     );
 }

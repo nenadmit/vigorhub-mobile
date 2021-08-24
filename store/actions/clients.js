@@ -32,7 +32,6 @@ export function inviteClient(invitedUser) {
 
       const url = `${API_URL}/api/v1/accounts/${currentUserID}/clients`;
       const { data } = await http.post(url, payload);
-      console.log(data,'CLIENT CREATED SUCCESSFULLY');
 
       dispatch({
         type: actionTypes.CREATE_CLIENT_SUCCESS,

@@ -9,7 +9,7 @@ import { Button } from "../../../components/common/controls";
 import * as actions from "../../../store/actions/clients";
 
 function ClientCard(props) {
-  const { first_name, last_name, profileImg, createdAt } = props;
+  const { first_name, last_name, profileImg } = props;
   return (
     <View style={styles.clientCard}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -29,8 +29,8 @@ function ClientCard(props) {
   );
 }
 
-function DashboardClients(props) {
-  const { clients, error } = useSelector((state) => state.clients);
+function DashboardClients() {
+  const { clients} = useSelector((state) => state.clients);
   const { currentUser } = useSelector((state) => state.auth);
   const [inviteModalOpen, setInviteModal] = React.useState(false);
   const dispatch = useDispatch();
@@ -41,19 +41,10 @@ function DashboardClients(props) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "lightgrey",
-          marginTop: 10,
-          marginBottom: 10,
-        }}
-      ></View>
       {clients.length === 0 && (
         <>
           <NoClients></NoClients>
-          <Button onClick={() => setInviteModal(true)}>Invite client</Button>
+          <Button style={{marginTop:10,width:150}} onClick={() => setInviteModal(true)}>Invite client</Button>
         </>
       )}
       {clients.map((client, index) => (

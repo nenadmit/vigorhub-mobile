@@ -23,7 +23,7 @@ function TopNavigation(props) {
           <Text onPress={logoutT} style={{ color: "white", fontSize: 10 }}>1</Text>
         </Layout>
         <Icon name="bell-outline" fill="#FFF" width={25} height={25}></Icon>
-        <Icon name="menu-2-outline" fill="#FFF" width={25} height={25}></Icon>
+        <Icon onPress={() => history.push("/dashboard")} name="menu-2-outline" fill="#FFF" width={25} height={25}></Icon>
       </View>
     </View>
   );

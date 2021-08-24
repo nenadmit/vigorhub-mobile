@@ -8,17 +8,22 @@ import {
 } from "react-router-native";
 import DashboardClients from "./dashboard-clients";
 import DashboardWorkouts from "./dashboard-plans";
-import { View } from "react-native";
+import { View,Text } from "react-native";
+import DashboardHome from "./dashboard-home";
 
 const routes = [
   {
     path: "/dashboard/workouts",
-    component: DashboardClients,
+    component: DashboardWorkouts,
   },
   {
     path: "/dashboard/clients",
-    component: DashboardWorkouts,
+    component: DashboardClients,
   },
+  {
+    path: "/dashboard/home",
+    component: DashboardHome
+  }
 ]
 
 function InstructorDashboard(props) {
