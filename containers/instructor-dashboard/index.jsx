@@ -10,6 +10,7 @@ import DashboardClients from "./dashboard-clients";
 import DashboardWorkouts from "./dashboard-plans";
 import { View,Text } from "react-native";
 import DashboardHome from "./dashboard-home";
+import ClientUserProfile from "../client-user-profile";
 
 const routes = [
   {
@@ -23,10 +24,13 @@ const routes = [
   {
     path: "/dashboard/home",
     component: DashboardHome
+  },{
+    path: "/dashboard/client",
+    component: ClientUserProfile
   }
 ]
 
-function InstructorDashboard(props) {
+function InstructorDashboard() {
   
   return (
     <Layout style={{ position: "relative", height: "100%" }}>

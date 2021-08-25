@@ -7,9 +7,10 @@ import InviteUserModal from "../../../components/instructor-dashboard/invite-use
 import NoClients from "../../../components/instructor-dashboard/no-clients-screen";
 import { Button } from "../../../components/common/controls";
 import * as actions from "../../../store/actions/clients";
+import { Link } from "react-router-native";
 
 function ClientCard(props) {
-  const { first_name, last_name, profileImg } = props;
+  const { first_name, last_name, profileImg, _id } = props;
   return (
     <View style={styles.clientCard}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -20,9 +21,11 @@ function ClientCard(props) {
             source={require("../../../assets/clients/default-profile-image.jpg")}
           ></Avatar>
         )}
-        <Text
-          style={{ marginLeft: 5, fontWeight: "bold" }}
-        >{`${first_name} ${last_name}`}</Text>
+        <Link to={`/dashboard/client?id=${_id}`}>
+          <Text
+            style={{ marginLeft: 5, fontWeight: "bold" }}
+          >{`${first_name} ${last_name}`}</Text>
+        </Link>
       </View>
       <Icon name="bell-outline" width={15} height={15} fill="#000"></Icon>
     </View>
@@ -30,7 +33,7 @@ function ClientCard(props) {
 }
 
 function DashboardClients() {
-  const { clients} = useSelector((state) => state.clients);
+  const { clients } = useSelector((state) => state.clients);
   const { currentUser } = useSelector((state) => state.auth);
   const [inviteModalOpen, setInviteModal] = React.useState(false);
   const dispatch = useDispatch();
@@ -44,7 +47,12 @@ function DashboardClients() {
       {clients.length === 0 && (
         <>
           <NoClients></NoClients>
-          <Button style={{marginTop:10,width:150}} onClick={() => setInviteModal(true)}>Invite client</Button>
+          <Button
+            style={{ marginTop: 10, width: 150 }}
+            onClick={() => setInviteModal(true)}
+          >
+            Invite client
+          </Button>
         </>
       )}
       {clients.map((client, index) => (

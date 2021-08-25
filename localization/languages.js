@@ -27,6 +27,7 @@ export const en = {
     "Your client has been added to your account, share credentials with him so that he can login!",
   client_username: "Client username",
   temp_password: "Temporary password",
+  create_client_profile:"Create client profile"
 };
 
 export const srb = {
@@ -57,4 +58,5 @@ export const srb = {
     "Podelite kredencijale sa klijentom, kako bi mogao da se uloguje u aplikaciju.",
   client_username: "Korisnicko ime",
   temp_password: "Privremena lozinka",
+  create_client_profile: "Napravi klijentov profil"
 };

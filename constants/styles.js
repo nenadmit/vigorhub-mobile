@@ -6,6 +6,10 @@ export const textStyles = StyleSheet.create({
         fontWeight:'bold',
         textAlign: 'center'
     },
+    h3:{
+        fontSize:20,
+        fontWeight:'bold'
+    },
     regular:{
         fontSize:16
     },
